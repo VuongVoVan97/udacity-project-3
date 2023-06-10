@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-user
+  labels:
+    app: api-user
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api-user
+  template:
+    metadata:
+      labels:
+        app: api-user
+    spec:
+      containers:
+        - name: api-user
+          image: vuongvv2/udagram-api-user:v4a
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: 1000m
+            requests:
+              cpu: 500m
+          env:
+            - name: POSTGRES_USERNAME
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: mypassword
+            - name: POSTGRES_HOST
+              value: database-1.c2w1pquq9x3k.us-east-1.rds.amazonaws.com
+            - name: POSTGRES_DB
+              value: postgres
+            - name: AWS_BUCKET
+              value: vuong-bucket
+            - name: AWS_REGION
+              value: us-east-1
+            - name: AWS_PROFILE
+              value: default
+            - name: JWT_SECRET
+              value: testing
+            - name: URL
+              value: http://localhost:8100
