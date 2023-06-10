@@ -13,10 +13,10 @@ before_script:
 
 script:
   - docker --version
-  - docker buildx build --platform linux/amd64,linux/arm64 -t udagram-api-feed:v4a ./udagram-api-feed
-  - docker buildx build --platform linux/amd64,linux/arm64 -t udagram-api-user:v4a ./udagram-api-user
-  - docker buildx build --platform linux/amd64,linux/arm64 -t udagram-frontend:local ./udagram-frontend
-  - docker buildx build --platform linux/amd64,linux/arm64 -t reverseproxy:v4a ./reverseproxy
+  - docker build -t udagram-api-feed:v4a ./udagram-api-feed
+  - docker build -t udagram-api-user:v4a ./udagram-api-user
+  - docker build -t udagram-frontend:local ./udagram-frontend
+  - docker build -t reverseproxy:v4a ./reverseproxy
 
   - docker tag udagram-api-feed:v4a vuongvv2/udagram-api-feed:v4a
   - docker tag reverseproxy:v4a vuongvv2/reverseproxy:v4a
